@@ -1,4 +1,79 @@
+# project
 data/
 outputs/
+
+# Python
 __pycache__/
+*.py[cod]
+*$py.class
+*.egg
+*.egg-info/
+.eggs/
+build/
+dist/
+wheels/
+pip-wheel-metadata/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.ipynb_checkpoints/
+
+# virtual envs
+.venv/
+venv/
+env/
+ENV/
+.env
+.python-version
+.conda/
+conda-env/
+
+# IDEs / editors
+.vscode/
+.idea/
+*.iml
+.fleet/
+*.code-workspace
+.spyderproject
+.spyproject
+.ropeproject
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+
+# AI assistants
+.claude/
+CLAUDE.local.md
+.codex/
+.aider*
+.cursor/
+.cursorignore
+
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.synctex(busy)
+*.toc
+*.vrb
+*.xdv
+latex.out/
+
+# OS
 .DS_Store
+Thumbs.db
