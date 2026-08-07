@@ -42,8 +42,9 @@ $PY scripts/play.py --dataset X --video ID                 # interactive player
 ```
 
 Player keys: `space` play/pause · `a`/`d` ±1 frame · `A`/`D` ±10 · `j`/`l` ±1 s ·
-`n`/`p` next/prev phase boundary · `[`/`]` speed · `s` screenshot · `q` quit.
-Click the bottom timeline bar to seek.
+`n`/`p` next/prev phase boundary · `[`/`]` speed · `s` screenshot · `h` hide/show
+the in-window key help · `q` quit. Click the bottom timeline bar to seek.
+The same key list is shown as a footer inside the player window.
 
 The boundary strips are the core tool for protocol design: each transition is
 one PNG showing the LAST frame of the previous phase, the FIRST frame of the

@@ -10,6 +10,7 @@ to the next/previous phase boundary. Keys (window focused):
     n / p        jump to next / previous phase boundary (first frame of a segment)
     ] / [        playback speed x2 / /2
     s            save annotated frame PNG next to the window title's path
+    h            show / hide the key help footer
     q or ESC     quit
 
 Clicking on the timeline bar seeks.
@@ -28,6 +29,11 @@ from .schema import VideoAnnotation
 FONT = cv2.FONT_HERSHEY_SIMPLEX
 BAR_H = 26
 BANNER_H = 58
+HELP_ITEMS = [  # ASCII only: cv2.putText cannot draw glyphs like the middle dot
+    "space play/pause", "a/d +-1 frame", "A/D +-10", "j/l +-1s",
+    "n/p prev/next boundary", "[/] speed", "s screenshot",
+    "click bar to seek", "h hide help", "q quit",
+]
 
 
 def _fmt_t(frame: int, fps: float) -> str:
@@ -48,6 +54,7 @@ class Player:
         self.frame_idx = 0
         self.playing = False
         self.speed = 1.0
+        self.show_help = True
         self.cur_img: np.ndarray | None = None
         self.boundaries = sorted({s.start_frame for s in v.segments}
                                  | {s.end_frame + 1 for s in v.segments})
@@ -65,6 +72,26 @@ class Player:
         x = int(self.frame_idx / total * (width - 1))
         bar[:, max(0, x - 1):x + 2] = (255, 255, 255)
         return bar
+
+    def _help_strip(self, width: int) -> np.ndarray:
+        """Key bindings wrapped into as many lines as the window width needs."""
+        scale, line_h, pad = 0.42, 20, 10
+        sep = "   "
+        lines: list[str] = []
+        cur = ""
+        for item in HELP_ITEMS:
+            cand = item if not cur else cur + sep + item
+            if cur and cv2.getTextSize(cand, FONT, scale, 1)[0][0] > width - 2 * pad:
+                lines.append(cur)
+                cur = item
+            else:
+                cur = cand
+        lines.append(cur)
+        strip = np.full((6 + line_h * len(lines), width, 3), 24, np.uint8)
+        for i, line in enumerate(lines):
+            cv2.putText(strip, line, (pad, line_h * (i + 1)), FONT, scale,
+                        (170, 170, 170), 1, cv2.LINE_AA)
+        return strip
 
     def render(self, img: np.ndarray) -> np.ndarray:
         h, w = img.shape[:2]
@@ -88,7 +115,11 @@ class Player:
             cv2.putText(banner, f"next: {nxt_lab or '(unlabeled)'} in {dt:.2f}s (#{nxt})",
                         (max(w // 2, status_w + 40), 48), FONT, 0.5, (180, 220, 255),
                         1, cv2.LINE_AA)
-        return cv2.vconcat([banner, img, self._timeline(w)])
+        parts = [banner, img]
+        if self.show_help:
+            parts.append(self._help_strip(w))
+        parts.append(self._timeline(w))
+        return cv2.vconcat(parts)
 
     # ---- control ----------------------------------------------------------
     def seek(self, frame: int):
@@ -150,6 +181,8 @@ class Player:
                 prv = next((b for b in reversed(self.boundaries) if b < self.frame_idx), None)
                 if prv is not None:
                     self.playing = False; self.seek(prv)
+            elif k == ord("h"):
+                self.show_help = not self.show_help
             elif k == ord("]"):
                 self.speed = min(16.0, self.speed * 2)
             elif k == ord("["):
