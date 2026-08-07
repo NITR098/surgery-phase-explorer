@@ -1,10 +1,10 @@
 {
   "cholec80": {
     "kind": "cholec80",
-    "root": "data/cholec80"
+    "root": "/Users/ehsan/Documents/Dataset/Surgery_Datasets/cholec80"
   },
   "cataract1k": {
     "kind": "cataract1k",
-    "root": "/Users/ehsan/Documents/Cochlear_Implant/ci-video-processing/data/cataract1k"
+    "root": "/Users/ehsan/Documents/Dataset/Surgery_Datasets/cataract1k"
   }
 }

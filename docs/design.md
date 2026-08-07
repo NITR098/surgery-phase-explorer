@@ -1,4 +1,4 @@
-# Dataset Annotation Explorer — design
+# Surgery Phase Explorer — design
 
 2026-08-07
 
@@ -16,8 +16,8 @@ feed the annotation protocol for the in-house cochlear-implant dataset
 
 | name | location | annotation format | convention |
 |---|---|---|---|
-| cholec80 | `data/cholec80/` (annotations for all 80 videos + 3 sample videos extracted from `~/Downloads/cholec80.zip`) | per-frame TSV `Frame\tPhase`, 0-based, 25 fps | every frame labeled — no gaps, hard cuts between phases |
-| cataract1k | `../ci-video-processing/data/cataract1k/` (56 cases, videos + CSVs) | interval CSV `caseId,comment,frame,endFrame,sec,endSec`, 60 fps (`case_*_video.csv`) | gaps between phases left **unlabeled** (idle), phases may repeat |
+| cholec80 | `~/Documents/Dataset/Surgery_Datasets/cholec80/` (complete: 80 videos + annotations) | per-frame TSV `Frame\tPhase`, 0-based, 25 fps | every frame labeled — no gaps, hard cuts between phases |
+| cataract1k | `~/Documents/Dataset/Surgery_Datasets/cataract1k/` (56 cases, videos + CSVs) | interval CSV `caseId,comment,frame,endFrame,sec,endSec`, 60 fps (`case_*_video.csv`) | gaps between phases left **unlabeled** (idle), phases may repeat |
 | ci-inhouse | any `ci-annotator` folder (`annotations/*.csv` beside the videos) | segments CSV `phase,start_frame,end_frame,fps,…` or per-frame `frame,time_s,label` | 13-label taxonomy incl. explicit IDLE/Unknown/Blurry |
 
 m2cai16-workflow uses the same per-frame format as cholec80, so its loader is

@@ -1,4 +1,4 @@
-# Dataset Annotation Explorer
+# Surgery Phase Explorer
 
 Load public surgical-video datasets with their **phase annotations** and
 inspect them — timeline ribbons, an interactive player with the label overlay,
@@ -19,15 +19,8 @@ Datasets are wired up in [`datasets.json`](datasets.json) (`name -> {kind, root}
 
 | name | root | status |
 |---|---|---|
-| `cholec80` | `data/cholec80/` | all 80 phase annotations + 3 sample videos (video13/55/70) extracted from `~/Downloads/cholec80.zip` |
-| `cataract1k` | `../ci-video-processing/data/cataract1k/` | 56 cases, videos + annotations |
-
-To extract more Cholec80 videos (the 70 GB zip stays in `~/Downloads`; there
-is NOT enough free disk for all of it):
-
-```bash
-cd data/cholec80 && unzip ~/Downloads/cholec80.zip "videos/video01.mp4"
-```
+| `cholec80` | `~/Documents/Dataset/Surgery_Datasets/cholec80/` | complete: 80 videos + 80 phase annotations |
+| `cataract1k` | `~/Documents/Dataset/Surgery_Datasets/cataract1k/` | complete: 56 cases, videos + annotations |
 
 To view the **in-house CI annotations** with the same tools, add to `datasets.json`:
 
@@ -90,7 +83,6 @@ phase_atlas/            # library: schema, loaders, colors, viz, analysis
   timeline.py           # ribbon figure        montage.py  # boundary strips
   player.py             # interactive player   analysis.py # convention report
 scripts/                # CLI wrappers (see above)
-data/                   # local dataset copies (git-ignored)
 outputs/                # generated figures/reports (git-ignored)
 docs/design.md          # design notes
 ```
