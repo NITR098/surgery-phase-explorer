@@ -15,12 +15,14 @@ No install needed — everything runs with the existing `torch` conda env:
 PY=/opt/miniconda3/envs/torch/bin/python   # has cv2, numpy, matplotlib
 ```
 
-Datasets are wired up in [`datasets.json`](datasets.json) (`name -> {kind, root}`):
+Datasets are wired up in [`datasets.json`](datasets.json) (`name -> {kind, root}`);
+`root` may be a single path or a list of candidate paths (first existing wins),
+which lets the same config serve both machines:
 
-| name | root | status |
-|---|---|---|
-| `cholec80` | `~/Documents/Dataset/Surgery_Datasets/cholec80/` | complete: 80 videos + 80 phase annotations |
-| `cataract1k` | `~/Documents/Dataset/Surgery_Datasets/cataract1k/` | complete: 56 cases, videos + annotations |
+| name | macOS root | Windows root | status |
+|---|---|---|---|
+| `cholec80` | `~/Documents/Dataset/Surgery_Datasets/cholec80/` | `C:\Users\engte\Documents\Files\Datasets\Cholec80\` | complete: 80 videos + 80 phase annotations |
+| `cataract1k` | `~/Documents/Dataset/Surgery_Datasets/cataract1k/` | `C:\Users\engte\Documents\Files\Datasets\Cataract1k\cataract1k\` | complete: 56 cases, videos + annotations |
 
 To view the **in-house CI annotations** with the same tools, add to `datasets.json`:
 

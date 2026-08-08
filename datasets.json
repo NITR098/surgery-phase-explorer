@@ -1,10 +1,16 @@
 {
   "cholec80": {
     "kind": "cholec80",
-    "root": "/Users/ehsan/Documents/Dataset/Surgery_Datasets/cholec80"
+    "root": [
+      "/Users/ehsan/Documents/Dataset/Surgery_Datasets/cholec80",
+      "C:/Users/engte/Documents/Files/Datasets/Cholec80"
+    ]
   },
   "cataract1k": {
     "kind": "cataract1k",
-    "root": "/Users/ehsan/Documents/Dataset/Surgery_Datasets/cataract1k"
+    "root": [
+      "/Users/ehsan/Documents/Dataset/Surgery_Datasets/cataract1k",
+      "C:/Users/engte/Documents/Files/Datasets/Cataract1k/cataract1k"
+    ]
   }
 }
