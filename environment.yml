@@ -1,0 +1,11 @@
+# conda env create -f environment.yml && conda activate surgery-phase-explorer
+name: surgery-phase-explorer
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pip
+  - pip:
+      - numpy
+      - matplotlib
+      - opencv-python   # the PyPI build includes the GUI backend the player window needs
