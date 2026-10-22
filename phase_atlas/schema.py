@@ -52,6 +52,7 @@ class VideoAnnotation:
     n_frames: int | None             # video length if known (annotation timebase)
     segments: list[Segment] = field(default_factory=list)
     video_path: Path | None = None
+    colors: dict[str, str] = field(default_factory=dict)  # label -> hex, if the annotation tool fixes them
 
     def __post_init__(self):
         self.segments.sort(key=lambda s: (s.start_frame, s.end_frame))

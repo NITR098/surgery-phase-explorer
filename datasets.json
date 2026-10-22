@@ -12,5 +12,21 @@
       "/Users/ehsan/Documents/Dataset/Surgery_Datasets/cataract1k",
       "C:/Users/engte/Documents/Files/Datasets/Cataract1k/cataract1k"
     ]
+  },
+  "ci-set1": {
+    "kind": "ci-inhouse",
+    "root": [
+      "/Users/ehsan/Documents/Dataset/Cochlea_Data/renamed_surgery_videos_set1",
+      "C:/Users/engte/Documents/Files/Datasets/Cochlea_Data/renamed_surgery_videos_set1",
+      "C:/Users/khodape/Desktop/Datasets/Cochlea_Data/renamed_surgery_videos_set1"
+    ]
+  },
+  "ci-set2": {
+    "kind": "ci-inhouse",
+    "root": [
+      "/Users/ehsan/Documents/Dataset/Cochlea_Data/renamed_surgery_videos_set2",
+      "C:/Users/engte/Documents/Files/Datasets/Cochlea_Data/renamed_surgery_videos_set2",
+      "C:/Users/khodape/Desktop/Datasets/Cochlea_Data/renamed_surgery_videos_set2"
+    ]
   }
 }

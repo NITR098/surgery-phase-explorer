@@ -14,7 +14,7 @@ from phase_atlas.player import Player
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--dataset", required=True, choices=dataset_names())
-    ap.add_argument("--video", required=True, help="video id, e.g. video13 / case_5058")
+    ap.add_argument("--video", required=True, help="video id, e.g. video13 / case_5058 / 001_X_01")
     ap.add_argument("--start-frame", type=int, default=0)
     ap.add_argument("--dump-frame", type=int, metavar="N",
                     help="headless: render annotated frame N to --out and exit")

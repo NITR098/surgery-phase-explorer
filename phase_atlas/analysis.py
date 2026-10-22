@@ -149,9 +149,9 @@ def conventions_report(videos: list[VideoAnnotation]) -> str:
 
 
 def write_report(videos: list[VideoAnnotation], out_dir: Path) -> Path:
-    out_dir.mkdir(parents=True, exist_ok=True)
     name = videos[0].dataset
-    md = out_dir / f"{name}.md"
+    md = out_dir / f"{name}.md"    # "ci-set1/macro_phase_annotations" nests a folder
+    md.parent.mkdir(parents=True, exist_ok=True)
     md.write_text(conventions_report(videos))
     transition_matrix_png(videos, out_dir / f"{name}_transitions.png")
     return md

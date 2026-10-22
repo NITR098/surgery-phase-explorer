@@ -2,13 +2,15 @@
 
 Colors are assigned per dataset in order of first appearance across its
 videos, so the timeline ribbon, boundary montages, and player all agree.
-The in-house taxonomy keeps the exact colors used inside ci-annotator.
+Labels whose color the annotation tool fixes (ci-annotator's taxonomy.json,
+carried in VideoAnnotation.colors) keep exactly that color.
 """
 from __future__ import annotations
 
 from .schema import VideoAnnotation
 
-# matches ci-annotator/annotator/core.py LABELS
+# matches ci-annotator/annotator/core.py LABELS; used for annotation folders
+# that have no taxonomy.json
 CI_INHOUSE_COLORS = {
     "Mastoidectomy":       "#1f77b4",
     "Cochleostomy":        "#2ca02c",
@@ -40,8 +42,10 @@ def label_colors(videos: list[VideoAnnotation]) -> dict[str, str]:
         for lab in v.labels():
             if lab not in labels:
                 labels.append(lab)
-    if videos and videos[0].dataset == "ci-inhouse":
-        base = dict(CI_INHOUSE_COLORS)
+    base: dict[str, str] = {}
+    for v in videos:
+        base.update(v.colors)
+    if base:
         extra = [lab for lab in labels if lab not in base]
         base.update({lab: PALETTE[i % len(PALETTE)] for i, lab in enumerate(extra)})
         return {lab: base[lab] for lab in labels}
